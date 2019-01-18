@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties">
+        <property name="username" value="root"/>
+    </properties>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+        <!--延迟加载开关-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!--预加载改为懒加载-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!--开启二级缓存（Mapper缓存）-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!-- 和spring 整合后 environments 配置将被废除-->
+    <environments default="development">
+        <environment id="development">
+            <!--使用JDBC事务管理-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--sql语句mapper-->
+    <mappers>
+        <mapper resource="sqlmap/UserMapper.xml"/>
+    </mappers>
+</configuration>
