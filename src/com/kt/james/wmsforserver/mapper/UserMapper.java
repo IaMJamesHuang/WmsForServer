@@ -8,4 +8,6 @@ public interface UserMapper {
 
     public User findUserByAccount(String account) throws IOException;
 
+    public void insertUser(User user) throws IOException;
+
 }

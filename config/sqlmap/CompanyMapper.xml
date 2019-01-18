@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.CompanyMapper">
+
+    <select id="findCompanyById" parameterType="int" resultType="com.kt.james.wmsforserver.po.Company">
+        select * from company where id = #{id}
+    </select>
+
+    <select id="findCompanyByName" parameterType="java.lang.String" resultType="com.kt.james.wmsforserver.po.Company">
+        select * from company where name = #{company_name}
+    </select>
+
+
+</mapper>

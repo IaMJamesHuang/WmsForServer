@@ -8,6 +8,15 @@ public class User {
     private String nick;
     private String avatar_path;
     private String company_name;
+    private int company_id;
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
 
     public int getId() {
         return id;

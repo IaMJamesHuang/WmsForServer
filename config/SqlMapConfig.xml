@@ -31,5 +31,6 @@
     <!--sql语句mapper-->
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
+        <mapper resource="sqlmap/CompanyMapper.xml"/>
     </mappers>
 </configuration>

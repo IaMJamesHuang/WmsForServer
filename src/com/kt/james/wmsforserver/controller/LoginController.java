@@ -8,10 +8,13 @@ import com.kt.james.wmsforserver.bean.UserBean;
 public class LoginController {
 
     public static LoginDto doLogin(String account, String password) {
-        if (account == null || password == null) {
-            return null;
-        }
         LoginDto loginDto = new LoginDto();
+        if (account == null || password == null) {
+            loginDto.setUserBean(null);
+            loginDto.setResponseCode(404);
+            loginDto.setResponseMsg("账号/密码不能为空");
+            return loginDto;
+        }
         User user = UserDao.getUser(account);
         if (user == null || !password.equals(user.getPassword())) {
             loginDto.setUserBean(null);

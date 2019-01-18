@@ -18,7 +18,23 @@ public class UserDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        sqlSession.close();
         return user;
+    }
+
+    public static boolean insertUser(User user) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        boolean result = false;
+        try {
+            userMapper.insertUser(user);
+            sqlSession.commit();
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        sqlSession.close();
+        return result;
     }
 
 }
