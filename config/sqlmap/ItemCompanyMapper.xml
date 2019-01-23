@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.ItemCompanyMapper">
+
+    <select id="findItemBarcode" resultType="com.kt.james.wmsforserver.po.ItemCompany">
+        select item.*, company.id company_id, company.name company_name, company.employee_count
+        from item, company where item.name = #{0} and company.id = #{1}
+    </select>
+
+
+</mapper>

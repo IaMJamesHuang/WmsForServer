@@ -22,4 +22,17 @@ public class CompanyDao {
         return company;
     }
 
+    public static Company getCompanyById(int company_id) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        CompanyMapper userMapper = sqlSession.getMapper(CompanyMapper.class);
+        Company company = null;
+        try {
+            company = userMapper.findCompanyById(company_id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        sqlSession.close();
+        return company;
+    }
+
 }
