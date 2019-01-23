@@ -6,7 +6,7 @@ public class StringUtil {
         return text == null || text.length() == 0;
     }
 
-    public Integer parseInt(String value) {
+    public static Integer parseInt(String value) {
         Integer integer = null;
         try {
             integer = Integer.parseInt(value);

@@ -32,5 +32,6 @@
     <mappers>
         <mapper resource="sqlmap/UserMapper.xml"/>
         <mapper resource="sqlmap/CompanyMapper.xml"/>
+        <mapper resource="sqlmap/LocationMapper.xml"/>
     </mappers>
 </configuration>

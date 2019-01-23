@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.LocationMapper">
+
+    <select id="findLocation" resultType="com.kt.james.wmsforserver.po.Location">
+        select * from location where name = #{0} and company_id = #{1}
+    </select>
+
+
+
+</mapper>
