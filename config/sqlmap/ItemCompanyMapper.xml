@@ -10,5 +10,9 @@
         from item, company where item.name = #{0} and company.id = #{1}
     </select>
 
+    <insert id="insertItemCompany" >
+        insert into company_item(item_id, company_id)
+        value(#{0}, #{1})
+    </insert>
 
 </mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.ItemLocMapper">
+
+    <select id="findItemLoc" resultType="com.kt.james.wmsforserver.po.ItemLoc">
+        select * from item_loc
+        where company_id = #{0} and item_id = #{1} and loc_id = #{2}
+    </select>
+
+    <insert id="insertItemLoc">
+        insert into item_loc(company_id, item_id, loc_id, stock_count)
+        value(#{0}, #{1}, #{2}, #{3})
+    </insert>
+
+    <update id="updateItemLoc">
+        update item_loc set stock_count = #{3}
+        where company_id = #{0} and item_id = #{1} and loc_id = #{2}
+    </update>
+
+</mapper>

@@ -1,13 +1,11 @@
 package com.kt.james.wmsforserver.controller;
 
 import com.kt.james.wmsforserver.bean.CheckBarcodeBean;
-import com.kt.james.wmsforserver.dao.BarcodeCompanyDao;
 import com.kt.james.wmsforserver.dao.CompanyDao;
 import com.kt.james.wmsforserver.dao.ItemDao;
 import com.kt.james.wmsforserver.dto.CheckItemBarcodeDto;
 import com.kt.james.wmsforserver.po.Company;
 import com.kt.james.wmsforserver.po.Item;
-import com.kt.james.wmsforserver.po.ItemCompany;
 import com.kt.james.wmsforserver.util.StringUtil;
 
 public class CheckItemBarcodeController {

@@ -16,4 +16,15 @@ public class StringUtil {
         return integer;
     }
 
+    public static Float parseFloat(String value) {
+        Float result = null;
+        try {
+            result = Float.parseFloat(value);
+        } catch (Exception e) {
+
+        }
+        return result;
+
+    }
+
 }
