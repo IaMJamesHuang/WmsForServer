@@ -6,6 +6,8 @@ import java.io.IOException;
 
 public interface ItemMapper {
 
-    public Item findItemByBarcode(String barcode) throws IOException;
+    Item findItemByBarcode(String barcode) throws IOException;
+
+    void insertItem(Item item) throws IOException;
 
 }

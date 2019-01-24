@@ -95,4 +95,9 @@ public class CommonOkHttpClient {
         return call;
     }
 
+    public static Response getSync(Request request) throws IOException{
+        Call call = mOkHttpClient.newCall(request);
+        return call.execute();
+    }
+
 }
