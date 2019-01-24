@@ -22,7 +22,9 @@ public class LoginController {
             loginDto.setResponseMsg("账号/密码错误");
             return loginDto;
         }
-        UserBean userBean = new UserBean(user.getNick());
+        UserBean userBean = new UserBean();
+        userBean.setUsername(user.getNick());
+        userBean.setCompany_id(user.getCompany_id());
         loginDto.setUserBean(userBean);
         loginDto.setResponseMsg("登陆成功");
         loginDto.setResponseCode(200);

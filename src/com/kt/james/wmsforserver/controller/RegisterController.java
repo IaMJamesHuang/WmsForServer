@@ -39,7 +39,10 @@ public class RegisterController {
         insertUser.setCompany_id(company.getId());
         boolean result = UserDao.insertUser(insertUser);
         if (result) {
-            loginDto.setUserBean(new UserBean(insertUser.getNick()));
+            UserBean userBean = new UserBean();
+            userBean.setUsername(insertUser.getNick());
+            userBean.setCompany_id(insertUser.getCompany_id());
+            loginDto.setUserBean(userBean);
             loginDto.setResponseCode(200);
             loginDto.setResponseMsg("注册成功");
         } else {
