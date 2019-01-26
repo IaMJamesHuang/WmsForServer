@@ -55,4 +55,19 @@ public class ItemLocDao {
         return true;
     }
 
+    public static boolean deleteItemLoc(int id) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        ItemLocMapper mapper = sqlSession.getMapper(ItemLocMapper.class);
+        try {
+            mapper.deleteItemLoc(id);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            sqlSession.close();
+        }
+        return true;
+    }
+
 }

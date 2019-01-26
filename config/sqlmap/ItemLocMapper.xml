@@ -20,4 +20,8 @@
         where company_id = #{0} and item_id = #{1} and loc_id = #{2}
     </update>
 
+    <delete id="deleteItemLoc" parameterType="int">
+        delete from item_loc where id = #{id}
+    </delete>
+
 </mapper>

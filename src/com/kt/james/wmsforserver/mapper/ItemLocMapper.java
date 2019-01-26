@@ -12,4 +12,6 @@ public interface ItemLocMapper {
 
     void updateItemLoc(int company_id, int item_id, int loc_id, float stock_count) throws IOException;
 
+    void deleteItemLoc(int id) throws IOException;
+
 }
