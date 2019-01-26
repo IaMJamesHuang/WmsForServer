@@ -61,6 +61,8 @@ public class OffShelfController {
             dto.setResponseMsg("该库位对应商品库存不足");
             return dto;
         } else if (dif == 0) {
+            //触发触发器
+            ItemLocDao.updateItemLoc(realCompanyId, item.getId(), location.getId(), dif);
             //删除此记录
             ItemLocDao.deleteItemLoc(itemLoc.getId());
         } else {
