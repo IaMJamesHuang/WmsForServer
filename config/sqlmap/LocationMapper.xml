@@ -5,10 +5,22 @@
 
 <mapper namespace="com.kt.james.wmsforserver.mapper.LocationMapper">
 
+    <resultMap id="locationList" type="com.kt.james.wmsforserver.po.Location">
+        <id column="id" property="id"/>
+        <result column="company_id" property="company_id"/>
+        <result column="name" property="name"/>
+        <result column="loc_x" property="loc_x"/>
+        <result column="loc_y" property="loc_y"/>
+        <result column="available_num" property="available_num"/>
+        <result column="total_num" property="total_num"/>
+    </resultMap>
+
     <select id="findLocation" resultType="com.kt.james.wmsforserver.po.Location">
         select * from location where name = #{0} and company_id = #{1}
     </select>
 
-
+    <select id="findLocationList" parameterType="int" resultMap="locationList">
+        select * from location where company_id = #{id}
+    </select>
 
 </mapper>

@@ -6,6 +6,7 @@ import com.kt.james.wmsforserver.po.Location;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LocationDao {
 
@@ -21,6 +22,20 @@ public class LocationDao {
             sqlSession.close();
         }
         return location;
+    }
+
+    public static List<Location> getLocationList(int company_id) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        LocationMapper mapper = sqlSession.getMapper(LocationMapper.class);
+        List<Location> locationList = null;
+        try {
+            locationList = mapper.findLocationList(company_id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return locationList;
     }
 
 }
