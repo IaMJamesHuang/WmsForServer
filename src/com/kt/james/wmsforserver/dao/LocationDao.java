@@ -38,4 +38,25 @@ public class LocationDao {
         return locationList;
     }
 
+    public static Boolean insertLayoutInfos(List<Location> infos) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        LocationMapper mapper = sqlSession.getMapper(LocationMapper.class);
+        Boolean result = false;
+        try {
+//            for (int i=0; i<infos.size(); i++) {
+//                mapper.insertOrUpdateSingle(infos.get(i));
+//            }
+//            result = true;
+            result = mapper.insertOrUpdateList(infos);
+
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+            result = false;
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
 }

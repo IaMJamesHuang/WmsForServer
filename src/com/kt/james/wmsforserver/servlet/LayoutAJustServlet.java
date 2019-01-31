@@ -3,6 +3,8 @@ package com.kt.james.wmsforserver.servlet;
 import com.google.gson.Gson;
 import com.kt.james.wmsforserver.controller.LayoutAJustController;
 import com.kt.james.wmsforserver.dto.GetLayoutDto;
+import com.kt.james.wmsforserver.dto.InsertLayoutsDto;
+import com.kt.james.wmsforserver.util.StringUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +30,13 @@ public class LayoutAJustServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String jsonInfo = StringUtil.ReadAsChars(req);
+        String company_id = req.getParameter("company_id");
+        InsertLayoutsDto dto = new LayoutAJustController().insertLayoutInfo(company_id, jsonInfo);
+        String result = new Gson().toJson(dto);
+        resp.setContentType("text/json; charset=utf-8");
+        PrintWriter pw = resp.getWriter();
+        pw.println(result);
+        pw.flush();
     }
 }

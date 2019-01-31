@@ -23,4 +23,21 @@
         select * from location where company_id = #{id}
     </select>
 
+    <insert id="insertOrUpdateList">
+        insert into location(id, company_id, name, loc_x, loc_y, available_num, total_num)
+        values
+        <foreach collection="list" item="info" separator=",">
+            (#{info.id}, #{info.company_id}, #{info.name}, #{info.loc_x}, #{info.loc_y}, #{info.available_num}, #{info.total_num})
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        company_id = values(company_id), name = values(name), loc_x = values(loc_x), loc_y = values(loc_y), available_num = values(available_num), total_num = values(total_num)
+    </insert>
+
+    <insert id="insertOrUpdateSingle" parameterType="com.kt.james.wmsforserver.po.Location">
+        insert into location(id, company_id, name, loc_x, loc_y, available_num, total_num)
+        value(#{id}, #{company_id}, #{name}, #{loc_x}, #{loc_y}, #{available_num}, #{total_num})
+        on duplicate key update
+        company_id = values(company_id), name = values(name), loc_x = values(loc_x), loc_y = values(loc_y), available_num = values(available_num), total_num = values(total_num)
+    </insert>
+
 </mapper>

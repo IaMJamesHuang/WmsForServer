@@ -12,4 +12,8 @@ public interface LocationMapper {
 
     List<Location> findLocationList(int company_id) throws IOException;
 
+    Boolean insertOrUpdateList(List<Location> infos) throws IOException;
+
+    void insertOrUpdateSingle(Location location) throws IOException;
+
 }
