@@ -31,7 +31,7 @@ public class LayoutAJustServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String jsonInfo = StringUtil.ReadAsChars(req);
-        String company_id = req.getParameter("company_id");
+        String company_id = req.getHeader("company_id");
         InsertLayoutsDto dto = new LayoutAJustController().insertLayoutInfo(company_id, jsonInfo);
         String result = new Gson().toJson(dto);
         resp.setContentType("text/json; charset=utf-8");
