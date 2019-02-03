@@ -10,4 +10,6 @@ public interface UserMapper {
 
     public void insertUser(User user) throws IOException;
 
+    User findUserById(int userId) throws IOException;
+
 }

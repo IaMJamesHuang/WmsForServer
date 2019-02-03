@@ -37,4 +37,18 @@ public class UserDao {
         return result;
     }
 
+    public static User findUserById(int userId) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = null;
+        try {
+            user = userMapper.findUserById(userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return user;
+    }
+
 }

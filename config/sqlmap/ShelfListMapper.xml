@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.ShelfListMapper">
+
+    <resultMap id="shelfItem" type="com.kt.james.wmsforserver.bean.UpShelfBean">
+        <id column="id" property="shelfId"/>
+        <result column="shelf_list_id" property="shelfListId"/>
+        <result column="num" property="num"/>
+        <result column="state" property="state"/>
+        <result column="itemId" property="itemId"/>
+        <result column="itemName" property="itemName"/>
+        <result column="spec" property="itemSpec"/>
+        <result column="factory" property="itemFactory"/>
+        <result column="img_path" property="img_path"/>
+        <result column="barcode" property="itemBarcode"/>
+        <result column="locName" property="locName"/>
+        <result column="loc_x" property="loc_x"/>
+        <result column="loc_y" property="loc_y"/>
+        <result column="locId" property="locId"/>
+    </resultMap>
+
+    <resultMap id="shelfList" type="com.kt.james.wmsforserver.po.ShelfList">
+        <id column="id" property="id"/>
+        <result column="company_id" property="company_id"/>
+        <result column="user_id" property="oper_id"/>
+        <result column="state" property="state"/>
+    </resultMap>
+
+    <select id="findShelfListById" parameterType="int" resultMap="shelfList">
+        select * from shelf_list where id = #{id}
+    </select>
+
+    <select id="findShelfItemList" parameterType="int" resultMap="shelfItem">
+        select shelf_item.*, item.id as itemId, item.barcode, item.name as itemName, item.spec, item.factory, item.img_path,
+               location.id as locId, location.name as locName, location.loc_x, location.loc_y
+        from shelf_item, location, item
+        where shelf_item.shelf_list_id = #{id} and shelf_item.item_id = item.id and shelf_item.loc_id = location.id
+    </select>
+
+    <update id="updateShelfList" parameterType="com.kt.james.wmsforserver.po.ShelfList">
+        update shelf_list set user_id = #{oper_id}, state = #{state}
+        where id = #{id}
+    </update>
+    
+    <update id="updateShelfItem" parameterType="com.kt.james.wmsforserver.po.ShelfItem">
+        update shelf_item 
+        set  state = #{state}
+        where id = #{id}
+    </update>
+
+</mapper>

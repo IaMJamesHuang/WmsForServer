@@ -9,6 +9,10 @@
         select user.*, company.name as company_name from user, company where user.account = #{account}
     </select>
 
+    <select id="findUserById" parameterType="int" resultType="com.kt.james.wmsforserver.po.User">
+        select user.*, company.name as company_name from user, company where user.id = #{id}
+    </select>
+
     <insert id="insertUser" parameterType="com.kt.james.wmsforserver.po.User">
         insert into user(account, password, nick, company_id, avatar_path)
         value (#{account}, #{password}, #{nick}, #{company_id}, #{avatar_path})
