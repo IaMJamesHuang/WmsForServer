@@ -2,6 +2,8 @@ package com.kt.james.wmsforserver.bean;
 
 public class CheckBarcodeBean {
 
+    private int id;
+
     private String barcode;
 
     private String name;
@@ -51,5 +53,13 @@ public class CheckBarcodeBean {
 
     public void setImg_path(String img_path) {
         this.img_path = img_path;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

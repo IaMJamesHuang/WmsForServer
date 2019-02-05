@@ -25,6 +25,7 @@ public class LoginController {
         UserBean userBean = new UserBean();
         userBean.setUsername(user.getNick());
         userBean.setCompany_id(user.getCompany_id());
+        userBean.setId(user.getId());
         loginDto.setUserBean(userBean);
         loginDto.setResponseMsg("登陆成功");
         loginDto.setResponseCode(200);

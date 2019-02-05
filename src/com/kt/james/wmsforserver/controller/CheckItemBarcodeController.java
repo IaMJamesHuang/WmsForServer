@@ -41,6 +41,7 @@ public class CheckItemBarcodeController {
             return dto;
         }
         CheckBarcodeBean bean = new CheckBarcodeBean();
+        bean.setId(item.getId());
         bean.setBarcode(item.getBarcode());
         bean.setFactory(item.getFactory());
         bean.setName(item.getName());

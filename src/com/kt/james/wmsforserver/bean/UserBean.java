@@ -2,6 +2,8 @@ package com.kt.james.wmsforserver.bean;
 
 public class UserBean {
 
+    private int id;
+
     private String username;
 
     private int company_id;
@@ -22,4 +24,11 @@ public class UserBean {
         this.username = username;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

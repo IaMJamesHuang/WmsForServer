@@ -28,6 +28,11 @@ public class CheckLocController {
             return dto;
         }
         CheckLocBean bean = new CheckLocBean();
+        bean.setId(location.getId());
+        bean.setAvailable_num(location.getAvailable_num());
+        bean.setTotal_num(location.getTotal_num());
+        bean.setLoc_x(location.getLoc_x());
+        bean.setLoc_y(location.getLoc_y());
         bean.setCompany_id(location.getCompany_id());
         bean.setName(location.getName());
         dto.setLocation(bean);
