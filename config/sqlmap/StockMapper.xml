@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.StcokMapper">
+
+    <select id="getStockByItemId" resultType="com.kt.james.wmsforserver.po.Stock">
+        select * from stock where company_id = #{0} and item_id = #{1}
+    </select>
+
+</mapper>
