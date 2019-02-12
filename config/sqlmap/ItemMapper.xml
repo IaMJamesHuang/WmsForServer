@@ -13,5 +13,11 @@
         insert into item(barcode, name, spec, factory, img_path)
         value(#{barcode}, #{name}, #{spec}, #{factory}, #{img_path})
     </insert>
+    
+    <select id="findCompanyItems" parameterType="int" resultType="com.kt.james.wmsforserver.po.Item">
+        select item.* from company_item, item
+        where
+        company_id = #{id} and company_item.item_id = item.id;
+    </select>
 
 </mapper>

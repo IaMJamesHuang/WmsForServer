@@ -9,6 +9,7 @@ import com.kt.james.wmsforserver.util.StringUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ItemDao {
 
@@ -49,6 +50,20 @@ public class ItemDao {
             mapper.insertItem(item);
             sqlSession.commit();
             result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
+    public static List<Item> getAllItem(int companyId) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        ItemMapper mapper = sqlSession.getMapper(ItemMapper.class);
+        List<Item> result = null;
+        try {
+            result = mapper.findCompanyItems(companyId);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
