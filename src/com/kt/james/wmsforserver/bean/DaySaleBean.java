@@ -1,30 +1,12 @@
 package com.kt.james.wmsforserver.bean;
 
+import java.util.List;
+
 public class DaySaleBean {
-
-    private float month_sale;
-
-    private float day_sale;
 
     private int item_id;
 
-    private float available_num;
-
-    public float getMonth_sale() {
-        return month_sale;
-    }
-
-    public void setMonth_sale(float month_sale) {
-        this.month_sale = month_sale;
-    }
-
-    public float getDay_sale() {
-        return day_sale;
-    }
-
-    public void setDay_sale(float day_sale) {
-        this.day_sale = day_sale;
-    }
+    private List<DaySaleItemBean> daySaleInfos;
 
     public int getItem_id() {
         return item_id;
@@ -34,11 +16,11 @@ public class DaySaleBean {
         this.item_id = item_id;
     }
 
-    public float getAvailable_num() {
-        return available_num;
+    public List<DaySaleItemBean> getDaySaleInfos() {
+        return daySaleInfos;
     }
 
-    public void setAvailable_num(float available_num) {
-        this.available_num = available_num;
+    public void setDaySaleInfos(List<DaySaleItemBean> daySaleInfos) {
+        this.daySaleInfos = daySaleInfos;
     }
 }

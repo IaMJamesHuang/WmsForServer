@@ -1,7 +1,7 @@
 package com.kt.james.wmsforserver.servlet;
 
 import com.google.gson.Gson;
-import com.kt.james.wmsforserver.controller.StockController;
+import com.kt.james.wmsforserver.controller.DaySaleController;
 import com.kt.james.wmsforserver.dto.DaySaleDto;
 
 import javax.servlet.ServletException;
@@ -20,7 +20,7 @@ public class DaySaleServlet extends HttpServlet {
         String company_id = req.getHeader("company_id");
         String user_id = req.getHeader("user_id");
         String item_id = req.getParameter("item_id");
-        DaySaleDto dto = new StockController().getSale(company_id, user_id, item_id);
+        DaySaleDto dto = new DaySaleController().getSale(company_id, user_id, item_id);
         String result = new Gson().toJson(dto);
         resp.setContentType("text/json; charset=utf-8");
         PrintWriter pw = resp.getWriter();

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.DaySaleMapper">
+
+    <select id="getDaySaleInfos" resultType="com.kt.james.wmsforserver.bean.DaySaleItemBean">
+        select a.date, ifnull(b.day_sale, 0.0) as daysale
+        from (
+                 SELECT curdate() as date
+                 union all
+                 SELECT date_sub(curdate(), interval 1 day) as date
+                 union all
+                 SELECT date_sub(curdate(), interval 2 day) as date
+                 union all
+                 SELECT date_sub(curdate(), interval 3 day) as date
+                 union all
+                 SELECT date_sub(curdate(), interval 4 day) as date
+                 union all
+                 SELECT date_sub(curdate(), interval 5 day) as date
+                 union all
+                 SELECT date_sub(curdate(), interval 6 day) as date
+             ) a left join (
+            select day_sale, cdate
+            from day_sale
+            where item_id = #{1} and company_id = #{0}
+        ) b on a.date = b.cdate order by a.date asc;
+    </select>
+
+</mapper>
