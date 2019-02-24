@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 public class DaySaleDao {
 
@@ -22,6 +23,19 @@ public class DaySaleDao {
             sqlSession.close();
         }
         return result;
+    }
+
+    public static float getSevenDaySum(int company_id, int item_id) {
+        List<DaySaleItemBean> infos = getDaySaleInfos(company_id, item_id);
+        DaySaleItemBean sum = infos.stream().reduce(new BinaryOperator<DaySaleItemBean>() {
+            @Override
+            public DaySaleItemBean apply(DaySaleItemBean daySaleItemBean, DaySaleItemBean daySaleItemBean2) {
+                DaySaleItemBean result = new DaySaleItemBean();
+                result.setDaysale(daySaleItemBean.getDaysale() + daySaleItemBean2.getDaysale());
+                return result;
+            }
+        }).get();
+        return sum.getDaysale();
     }
 
 }
