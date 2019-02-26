@@ -5,6 +5,11 @@
 
 <mapper namespace="com.kt.james.wmsforserver.mapper.ItemLocMapper">
 
+    <select id="findItemLocList" resultType="com.kt.james.wmsforserver.po.Location">
+        select location.* from location, item_loc
+        where item_loc.company_id = #{0} and item_loc.item_id = #{1} and item_loc.loc_id = location.id
+    </select>
+
     <select id="findItemLoc" resultType="com.kt.james.wmsforserver.po.ItemLoc">
         select * from item_loc
         where company_id = #{0} and item_id = #{1} and loc_id = #{2}

@@ -72,4 +72,52 @@ public class ShelfListDao {
         return result;
     }
 
+    public static boolean createShelfList(int company_id) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        ShelfListMapper mapper = sqlSession.getMapper(ShelfListMapper.class);
+        boolean result = false;
+        try {
+            mapper.createShelfList(company_id);
+            sqlSession.commit();
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
+    public static boolean createShelfItems(List<ShelfItem> items) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        ShelfListMapper mapper = sqlSession.getMapper(ShelfListMapper.class);
+        boolean result = false;
+        try {
+            for (ShelfItem item : items) {
+                mapper.createShelfItem(item);
+            }
+            sqlSession.commit();
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
+    public static ShelfList getMaxShelfList(int company_id) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        ShelfListMapper mapper = sqlSession.getMapper(ShelfListMapper.class);
+        ShelfList result = null;
+        try {
+            result = mapper.findMaxShelfList(company_id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
 }

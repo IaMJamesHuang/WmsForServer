@@ -43,12 +43,7 @@ public class LocationDao {
         LocationMapper mapper = sqlSession.getMapper(LocationMapper.class);
         Boolean result = false;
         try {
-//            for (int i=0; i<infos.size(); i++) {
-//                mapper.insertOrUpdateSingle(infos.get(i));
-//            }
-//            result = true;
             result = mapper.insertOrUpdateList(infos);
-
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();

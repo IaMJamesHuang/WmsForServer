@@ -17,4 +17,10 @@ public interface ShelfListMapper {
 
     void updateShelfItem(ShelfItem shelfItem) throws IOException;
 
+    void createShelfList(int company_id) throws IOException;
+
+    void createShelfItem(ShelfItem item) throws IOException;
+
+    ShelfList findMaxShelfList(int company_id) throws IOException;
+
 }

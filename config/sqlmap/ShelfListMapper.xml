@@ -51,4 +51,18 @@
         where id = #{id}
     </update>
 
+    <insert id="createShelfList" parameterType="int" >
+        insert into shelf_list(company_id)
+        values (#{id})
+    </insert>
+
+    <insert id="createShelfItem" parameterType="com.kt.james.wmsforserver.po.ShelfItem">
+        insert into  shelf_item(shelf_list_id, item_id, loc_id, num)
+        values (#{shelf_list_id}, #{item_id}, #{loc_id}, #{num})
+    </insert>
+    
+    <select id="findMaxShelfList" parameterType="int" resultType="com.kt.james.wmsforserver.po.ShelfList">
+        select * from shelf_list where id = (select max(n.id) from (select id from shelf_list where company_id = #{id}) as n )
+    </select>
+
 </mapper>

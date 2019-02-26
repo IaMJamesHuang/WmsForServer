@@ -3,9 +3,11 @@ package com.kt.james.wmsforserver.dao;
 import com.kt.james.wmsforserver.SqlManagement;
 import com.kt.james.wmsforserver.mapper.ItemLocMapper;
 import com.kt.james.wmsforserver.po.ItemLoc;
+import com.kt.james.wmsforserver.po.Location;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ItemLocDao {
 
@@ -18,6 +20,20 @@ public class ItemLocDao {
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
+    public static List<Location> findItemLocList(int company_id, int item_id) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        ItemLocMapper mapper = sqlSession.getMapper(ItemLocMapper.class);
+        List<Location> result = null;
+        try {
+            result = mapper.findItemLocList(company_id, item_id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             sqlSession.close();
         }
         return result;
