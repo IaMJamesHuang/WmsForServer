@@ -35,6 +35,7 @@ public class ReplenishController {
         itemList.forEach((item) -> {
             ReplensihBean.ReplenishItem replenishItem =
                     new ReplensihBean.ReplenishItem();
+            replenishItem.setItemId(item.getId());
             replenishItem.setItemName(item.getName());
             //获取推荐数量
             replenishItem.setRecommend(RecommendCore.getRecommendReplenish(item));

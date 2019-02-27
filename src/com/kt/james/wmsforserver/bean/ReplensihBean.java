@@ -16,11 +16,22 @@ public class ReplensihBean {
     }
 
     public static class ReplenishItem {
+
+        private int itemId;
+
         private String itemName;
 
         private float recentlySale;
 
         private float recommend;
+
+        public int getItemId() {
+            return itemId;
+        }
+
+        public void setItemId(int itemId) {
+            this.itemId = itemId;
+        }
 
         public String getItemName() {
             return itemName;
