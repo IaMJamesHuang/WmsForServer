@@ -23,4 +23,20 @@ public class StockDao {
         return stock;
     }
 
+    public static boolean updateStock(Stock stock) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        StcokMapper mapper = sqlSession.getMapper(StcokMapper.class);
+        boolean result = false;
+        try {
+            mapper.updateStock(stock);
+            sqlSession.commit();
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
 }

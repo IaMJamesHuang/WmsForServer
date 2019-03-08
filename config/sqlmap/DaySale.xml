@@ -28,4 +28,20 @@
         ) b on a.date = b.cdate order by a.date asc;
     </select>
 
+    <insert id="insertDaySale" parameterType="com.kt.james.wmsforserver.po.DaySale">
+        insert into day_sale(item_id, company_id, day_sale, cdate)
+        values(#{item_id}, #{company_id}, #{day_sale}, #{cdate})
+    </insert>
+
+    <select id="findSingleDaySale" resultType="com.kt.james.wmsforserver.po.DaySale">
+        select * from day_sale
+        where company_id = #{0} and item_id = #{1} and cdate = #{2}
+    </select>
+
+    <update id="updateDaySale" parameterType="com.kt.james.wmsforserver.po.DaySale">
+        update day_sale
+        set day_sale = #{day_sale}
+        where item_id = #{item_id} and company_id = #{company_id} and cdate = #{cdate}
+    </update>
+
 </mapper>

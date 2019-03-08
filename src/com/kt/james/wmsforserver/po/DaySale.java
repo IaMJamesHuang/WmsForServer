@@ -1,6 +1,9 @@
 package com.kt.james.wmsforserver.po;
 
-public class Stock {
+
+import java.sql.Date;
+
+public class DaySale {
 
     private int id;
 
@@ -8,15 +11,9 @@ public class Stock {
 
     private int company_id;
 
-    @Deprecated
-    private float month_sale;
-
-    @Deprecated
     private float day_sale;
 
-    private float history_num;
-
-    private float available_num;
+    private Date cdate;
 
     public int getId() {
         return id;
@@ -42,39 +39,19 @@ public class Stock {
         this.company_id = company_id;
     }
 
-    @Deprecated
-    public float getMonth_sale() {
-        return month_sale;
-    }
-
-    @Deprecated
-    public void setMonth_sale(float month_sale) {
-        this.month_sale = month_sale;
-    }
-
-    @Deprecated
     public float getDay_sale() {
         return day_sale;
     }
 
-    @Deprecated
     public void setDay_sale(float day_sale) {
         this.day_sale = day_sale;
     }
 
-    public float getHistory_num() {
-        return history_num;
+    public Date getCdate() {
+        return cdate;
     }
 
-    public void setHistory_num(float history_num) {
-        this.history_num = history_num;
-    }
-
-    public float getAvailable_num() {
-        return available_num;
-    }
-
-    public void setAvailable_num(float available_num) {
-        this.available_num = available_num;
+    public void setCdate(Date cdate) {
+        this.cdate = cdate;
     }
 }

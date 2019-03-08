@@ -9,4 +9,10 @@
         select * from stock where company_id = #{0} and item_id = #{1}
     </select>
 
+    <update id="updateStock" parameterType="com.kt.james.wmsforserver.po.Stock">
+        update stock
+        set month_sale = #{month_sale}, day_sale = #{day_sale}, history_num = #{history_num}, available_num = #{available_num}
+        where item_id = #{item_id} and company_id = #{company_id}
+    </update>
+
 </mapper>

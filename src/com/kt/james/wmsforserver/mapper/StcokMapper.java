@@ -9,4 +9,6 @@ public interface StcokMapper {
 
     Stock getStockByItemId(int companyId, int itemId) throws IOException;
 
+    void updateStock(Stock stock) throws IOException;
+
 }
