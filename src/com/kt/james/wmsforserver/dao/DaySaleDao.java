@@ -4,6 +4,7 @@ import com.kt.james.wmsforserver.SqlManagement;
 import com.kt.james.wmsforserver.bean.DaySaleItemBean;
 import com.kt.james.wmsforserver.mapper.DaySaleMapper;
 import com.kt.james.wmsforserver.po.DaySale;
+import com.kt.james.wmsforserver.util.TimeUtils;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
@@ -73,6 +74,26 @@ public class DaySaleDao {
         DaySale result = null;
         try {
             result = mapper.findSingleDaySale(companyId, itemId, date);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
+    }
+
+    public static List<DaySale> getItemMonthSale(int companyId, int itemId) {
+        Date firstDay = TimeUtils.getFirstDayThisMonth();
+        Date lastDay = TimeUtils.getLastDayThisMonth();
+        return getItemSaleBetween(companyId, itemId, firstDay, lastDay);
+    }
+
+    public static List<DaySale> getItemSaleBetween(int companyId, int itemId, Date from, Date to) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        DaySaleMapper mapper = sqlSession.getMapper(DaySaleMapper.class);
+        List<DaySale> result = null;
+        try {
+            result = mapper.getMonthSale(companyId, itemId, from, to);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

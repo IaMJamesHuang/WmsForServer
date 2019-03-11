@@ -44,4 +44,10 @@
         where item_id = #{item_id} and company_id = #{company_id} and cdate = #{cdate}
     </update>
 
+    <select id="getMonthSale" resultType="com.kt.james.wmsforserver.po.DaySale">
+        select * from day_sale
+        where company_id = #{0} and item_id = #{1}
+          and cdate &gt;= #{2} and cdate &lt;= #{3}
+    </select>
+
 </mapper>

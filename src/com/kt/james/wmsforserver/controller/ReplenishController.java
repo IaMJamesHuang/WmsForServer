@@ -38,7 +38,7 @@ public class ReplenishController {
             replenishItem.setItemId(item.getId());
             replenishItem.setItemName(item.getName());
             //获取推荐数量
-            replenishItem.setRecommend(RecommendCore.getRecommendReplenish(item));
+            replenishItem.setRecommend(RecommendCore.getRecommendReplenish(item, realCompanyId));
             //获取最近7天销量
             replenishItem.setRecentlySale(DaySaleDao.getSevenDaySum(realCompanyId, item.getId()));
             replenishInfos.add(replenishItem);

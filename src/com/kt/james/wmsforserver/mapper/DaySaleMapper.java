@@ -17,4 +17,6 @@ public interface DaySaleMapper {
 
     void updateDaySale(DaySale daySale) throws IOException;
 
+    List<DaySale> getMonthSale(int companyId, int itemId, Date firstDay, Date lastDay) throws IOException;
+
 }
