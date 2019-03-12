@@ -1,4 +1,4 @@
-package com.kt.james.wmsforserver.test;
+package test;
 
 import com.google.gson.Gson;
 import com.kt.james.wmsforserver.bean.GetBarcodePOJO;
