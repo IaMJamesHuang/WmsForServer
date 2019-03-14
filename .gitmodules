@@ -1,0 +1,3 @@
+[submodule "WmsForAlgorithm"]
+	path = WmsForAlgorithm
+	url = https://github.com/IaMJamesHuang/WmsForAlgorithm.git

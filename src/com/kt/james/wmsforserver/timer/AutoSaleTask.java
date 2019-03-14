@@ -1,5 +1,6 @@
 package com.kt.james.wmsforserver.timer;
 
+import com.kt.james.wmsforserver.core.RuntimeCore;
 import com.kt.james.wmsforserver.util.TimeUtils;
 
 import java.util.Calendar;
@@ -16,7 +17,7 @@ public class AutoSaleTask implements BaseTimerTask {
         return new TimerTask() {
             @Override
             public void run() {
-                System.out.println("\n测试测试123456789");
+                RuntimeCore.execAutoSalePython();
             }
         };
     }
