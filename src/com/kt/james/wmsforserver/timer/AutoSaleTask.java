@@ -30,8 +30,8 @@ public class AutoSaleTask implements BaseTimerTask {
     @Override
     public Date getStartTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
-        calendar.set(Calendar.MINUTE, 18);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 39);
         calendar.set(Calendar.SECOND, 0);
         Date date=calendar.getTime();
         if (date.before(new Date())) {

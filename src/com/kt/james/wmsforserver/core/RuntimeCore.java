@@ -14,7 +14,7 @@ public class RuntimeCore {
         StringBuilder result = new StringBuilder();
         try {
             Properties pro = new Properties();
-            in = new FileInputStream("config/python.properties");
+            in = new FileInputStream(RuntimeCore.class.getResource("/").getPath()+"python.properties");
             pro.load(in);
             in.close();
             String command = pro.getProperty("auto_sale_script_path");
