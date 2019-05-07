@@ -6,8 +6,22 @@ import com.kt.james.wmsforserver.po.Company;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.util.List;
 
 public class CompanyDao {
+
+    public static List<Company> getCompanyList() {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        CompanyMapper userMapper = sqlSession.getMapper(CompanyMapper.class);
+        try {
+            return userMapper.getCompanyList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return null;
+    }
 
     public static Company getCompany(String companyName) {
         SqlSession sqlSession = SqlManagement.getInstance().openSession();
