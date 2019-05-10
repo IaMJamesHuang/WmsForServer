@@ -1,8 +1,9 @@
 package com.kt.james.wmsforserver.controller.plugin;
 
+import com.kt.james.wmsforserver.dao.PluginDao;
 import com.kt.james.wmsforserver.dto.UploadPluginDto;
+import com.kt.james.wmsforserver.po.Plugin;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -19,6 +20,9 @@ public class UploadController {
         File file = new File(savePath);
         UploadPluginDto dto = new UploadPluginDto();
         String message = "";
+        String pluginName = "default";
+        String version = "1";
+        String fileName = "";
         if (!file.exists() && !file.mkdir()) {
             message = "服务器创建文件夹失败";
             dto.setResponseMsg(message);
@@ -41,6 +45,11 @@ public class UploadController {
                         String name = item.getFieldName();
                         //解决普通输入项的数据的中文乱码问题
                         String value = item.getString("UTF-8");
+                        if("pluginName".equals(name)) {
+                            pluginName = value;
+                        } else if("version".equals(name)) {
+                            version = value;
+                        }
                     } else {//如果fileitem中封装的是上传文件
                         String filename = item.getName();
                         if (filename == null || filename.trim().equals("")) {
@@ -49,6 +58,8 @@ public class UploadController {
                         //注意：不同的浏览器提交的文件名是不一样的，有些浏览器提交上来的文件名是带有路径的，如：  c:\a\b\1.txt，而有些只是单纯的文件名，如：1.txt
                         //处理获取到的上传文件的文件名的路径部分，只保留文件名部分
                         filename = filename.substring(filename.lastIndexOf("\\") + 1);
+                        fileName = filename;
+
                         //获取item中的上传文件的输入流
                         InputStream in = item.getInputStream();
                         //创建一个文件输出流
@@ -76,6 +87,29 @@ public class UploadController {
             }
         } catch (Exception e) {
             message= "文件上传失败！";
+        }
+        File target = new File(savePath + File.separator + fileName);
+        if (target.exists()) {
+            long time = System.currentTimeMillis();
+            String[] arr = fileName.split("\\.");
+            //删除原有的插件
+            File dir = new File(savePath);
+            for (File child : dir.listFiles()) {
+                String name = child.getName();
+                if (name.startsWith(pluginName + "_")) {
+                    child.delete();
+                }
+            }
+            //更新数据库信息
+            Plugin plugin = new Plugin();
+            plugin.setName(pluginName);
+            plugin.setVersion(version);
+            plugin.setTime(System.currentTimeMillis());
+            PluginDao.updatePlugin(plugin);
+
+            //重命名
+            String realName = pluginName + "_" + time + "." + arr[1];
+            target.renameTo(new File(savePath + File.separator + realName));
         }
         dto.setResponseMsg(message);
         dto.setResponseCode(200);

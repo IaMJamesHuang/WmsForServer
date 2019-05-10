@@ -1,14 +1,14 @@
 package com.kt.james.wmsforserver.servlet.plugin;
 
+import com.google.gson.Gson;
+import com.kt.james.wmsforserver.dto.DownloadPluginDto;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URLEncoder;
 
 @WebServlet(name = "downloadPlugin", urlPatterns = "/downloadPlugin")
@@ -21,6 +21,14 @@ public class DownloadPluginServlet extends HttpServlet {
         String filePath = savePath + "\\" + fileName;
         File file = new File(filePath);
         if (!file.exists()) {
+            DownloadPluginDto dto = new DownloadPluginDto();
+            dto.setResponseMsg("插件不存在或已被删除");
+            dto.setResponseCode(400);
+            String result = new Gson().toJson(dto);
+            resp.setContentType("text/json; charset=utf-8");
+            PrintWriter pw = resp.getWriter();
+            pw.println(result);
+            pw.flush();
             return;
         }
         //设置响应头，控制浏览器下载该文件

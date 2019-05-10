@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kt.james.wmsforserver.mapper.PluginMapper">
+
+    <select id="queryPlugins" resultType="com.kt.james.wmsforserver.po.Plugin">
+        select * from plugin
+    </select>
+
+    <insert id="updatePlugin" parameterType="com.kt.james.wmsforserver.po.Plugin">
+        insert into plugin(name, version, time)
+        value(#{name}, #{version}, #{time})
+        on duplicate key update
+        name = values(name), version = values(version), time = values(time)
+    </insert>
+
+</mapper>

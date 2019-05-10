@@ -39,5 +39,6 @@
         <mapper resource="sqlmap/ShelfListMapper.xml"/>
         <mapper resource="sqlmap/StockMapper.xml"/>
         <mapper resource="sqlmap/DaySale.xml"/>
+        <mapper resource="sqlmap/PluginInfo.xml"/>
     </mappers>
 </configuration>
