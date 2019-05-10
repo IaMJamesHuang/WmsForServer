@@ -9,6 +9,8 @@ public interface PluginMapper {
 
     List<Plugin> queryPlugins() throws IOException;
 
+    List<Plugin> queryPluginsByUserId(int userId) throws IOException;
+
     void updatePlugin(Plugin plugin) throws IOException;
 
 }

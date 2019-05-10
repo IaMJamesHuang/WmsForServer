@@ -18,6 +18,8 @@ public class PluginDao {
             list = mapper.queryPlugins();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            sqlSession.close();
         }
         return list;
     }
@@ -30,7 +32,23 @@ public class PluginDao {
             sqlSession.commit();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            sqlSession.close();
         }
+    }
+
+    public static List<Plugin> queryPluginsByUser(int userId) {
+        SqlSession sqlSession = SqlManagement.getInstance().openSession();
+        PluginMapper mapper = sqlSession.getMapper(PluginMapper.class);
+        List<Plugin> result = null;
+        try {
+            result = mapper.queryPluginsByUserId(userId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+        return result;
     }
 
 }
