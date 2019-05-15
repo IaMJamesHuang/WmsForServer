@@ -1,8 +1,14 @@
 package com.kt.james.wmsforserver.controller.plugin;
 
+import com.google.gson.Gson;
+import com.kt.james.wmsforserver.bean.UploadAccessBean;
+import com.kt.james.wmsforserver.bean.UserAccessBean;
 import com.kt.james.wmsforserver.dao.PluginDao;
+import com.kt.james.wmsforserver.dao.UserPluginDao;
+import com.kt.james.wmsforserver.dto.UploadAccessDto;
 import com.kt.james.wmsforserver.dto.UploadPluginDto;
 import com.kt.james.wmsforserver.po.Plugin;
+import com.kt.james.wmsforserver.util.StringUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -14,6 +20,35 @@ import java.io.InputStream;
 import java.util.List;
 
 public class UploadController {
+
+    public static UploadAccessDto uploadAccess(String jsonInfo) {
+        UploadAccessDto dto = new UploadAccessDto();
+        if (StringUtil.isEmpty(jsonInfo)) {
+            dto.setResponseMsg("插入信息不能为空");
+            dto.setResponseCode(404);
+            return dto;
+        }
+        Gson gson = new Gson();
+        UploadAccessBean result = gson.fromJson(jsonInfo, UploadAccessBean.class);
+        if (result == null || result.getResult() == null || result.getResult().size() == 0) {
+            dto.setResponseMsg("插入信息不能为空");
+            dto.setResponseCode(404);
+            return dto;
+        }
+        //对每一个项目
+        for (UserAccessBean val : result.getResult()) {
+            UserAccessBean temp = UserPluginDao.queryUserAccess(val.getUser_id(), val.getPlugin_id());
+            if (temp == null) {
+                //插入
+                UserPluginDao.insertUserAccess(val);
+            } else {
+                UserPluginDao.updateUserAccess(val);
+            }
+        }
+        dto.setResponseMsg("调用成功");
+        dto.setResponseCode(200);
+        return dto;
+    }
 
     public static UploadPluginDto uploadPlugin(HttpServletRequest req) {
         String savePath = "D:\\plugin";
