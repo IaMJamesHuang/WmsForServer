@@ -17,5 +17,9 @@
         select * from company
     </select>
 
+    <select id="queryCompanyUserList" parameterType="int" resultType="com.kt.james.wmsforserver.po.User">
+        select * from user where company_id = #{id}
+    </select>
+
 
 </mapper>

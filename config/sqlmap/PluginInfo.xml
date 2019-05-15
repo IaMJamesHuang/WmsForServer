@@ -22,4 +22,10 @@
         where user_plugin.plugin_id = plugin.id and user_plugin.user_id = #{id}
     </select>
 
+    <select id="queryPluginAccessList" resultType="com.kt.james.wmsforserver.bean.UserAccessBean" parameterType="int">
+        select user_plugin.*, user.nick, plugin.name
+        from user_plugin, user, plugin, company
+        where user.id = user_plugin.user_id and plugin.id = user_plugin.plugin_id and user.company_id = company.id and company.id = #{id};
+    </select>
+
 </mapper>
