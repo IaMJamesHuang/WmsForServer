@@ -2,6 +2,8 @@ package com.kt.james.wmsforserver.po;
 
 public class Plugin {
 
+    private String nick;
+
     private int id;
 
     private String name;
@@ -9,6 +11,14 @@ public class Plugin {
     private long time;
 
     private String version;
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
 
     public int getId() {
         return id;

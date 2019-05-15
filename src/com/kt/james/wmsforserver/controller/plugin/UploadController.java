@@ -23,6 +23,7 @@ public class UploadController {
         String pluginName = "default";
         String version = "1";
         String fileName = "";
+        String nick = "";
         if (!file.exists() && !file.mkdir()) {
             message = "服务器创建文件夹失败";
             dto.setResponseMsg(message);
@@ -49,6 +50,8 @@ public class UploadController {
                             pluginName = value;
                         } else if("version".equals(name)) {
                             version = value;
+                        } else if ("nick".equals(name)) {
+                            nick = value;
                         }
                     } else {//如果fileitem中封装的是上传文件
                         String filename = item.getName();
@@ -105,7 +108,10 @@ public class UploadController {
             plugin.setName(pluginName);
             plugin.setVersion(version);
             plugin.setTime(System.currentTimeMillis());
+            plugin.setNick(nick);
             PluginDao.updatePlugin(plugin);
+
+            dto.setResult(plugin);
 
             //重命名
             String realName = pluginName + "_" + time + "." + arr[1];

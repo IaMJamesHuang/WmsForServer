@@ -10,10 +10,10 @@
     </select>
 
     <insert id="updatePlugin" parameterType="com.kt.james.wmsforserver.po.Plugin">
-        insert into plugin(name, version, time)
-        value(#{name}, #{version}, #{time})
+        insert into plugin(name, version, time, nick)
+        value(#{name}, #{version}, #{time}, #{nick})
         on duplicate key update
-        name = values(name), version = values(version), time = values(time)
+        name = values(name), version = values(version), time = values(time), nick = values(nick)
     </insert>
 
     <select id="queryPluginsByUserId" parameterType="int" resultType="com.kt.james.wmsforserver.po.Plugin">
