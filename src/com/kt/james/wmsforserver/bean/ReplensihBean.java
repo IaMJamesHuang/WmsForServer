@@ -25,6 +25,16 @@ public class ReplensihBean {
 
         private float recommend;
 
+        private float stock;
+
+        public float getStock() {
+            return stock;
+        }
+
+        public void setStock(float stock) {
+            this.stock = stock;
+        }
+
         public int getItemId() {
             return itemId;
         }

@@ -4,6 +4,7 @@ import com.kt.james.wmsforserver.bean.ReplensihBean;
 import com.kt.james.wmsforserver.core.RecommendCore;
 import com.kt.james.wmsforserver.dao.DaySaleDao;
 import com.kt.james.wmsforserver.dao.ItemDao;
+import com.kt.james.wmsforserver.dao.StockDao;
 import com.kt.james.wmsforserver.dto.ReplenishDto;
 import com.kt.james.wmsforserver.po.Item;
 import com.kt.james.wmsforserver.util.StringUtil;
@@ -41,6 +42,8 @@ public class ReplenishController {
             replenishItem.setRecommend(RecommendCore.getRecommendReplenish(item, realCompanyId));
             //获取最近7天销量
             replenishItem.setRecentlySale(DaySaleDao.getSevenDaySum(realCompanyId, item.getId()));
+            //获取商品库存数量
+            replenishItem.setStock(StockDao.getStock(realCompanyId, item.getId()).getAvailable_num());
             replenishInfos.add(replenishItem);
         });
         ReplensihBean result = new ReplensihBean();

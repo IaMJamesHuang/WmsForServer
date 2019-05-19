@@ -19,7 +19,7 @@
     <select id="queryPluginsByUserId" parameterType="int" resultType="com.kt.james.wmsforserver.po.Plugin">
         select plugin.id, plugin.name, plugin.version, plugin.time
         from plugin, user_plugin
-        where user_plugin.plugin_id = plugin.id and user_plugin.user_id = #{id}
+        where user_plugin.plugin_id = plugin.id and user_plugin.user_id = #{id} and authority = 1
     </select>
 
     <select id="queryPluginAccessList" resultType="com.kt.james.wmsforserver.bean.UserAccessBean" parameterType="int">
